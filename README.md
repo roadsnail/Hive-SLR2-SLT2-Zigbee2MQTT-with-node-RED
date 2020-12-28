@@ -99,7 +99,7 @@ Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water
 
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
 
-Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "1"}
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "1"}`
 
 Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function.
 
