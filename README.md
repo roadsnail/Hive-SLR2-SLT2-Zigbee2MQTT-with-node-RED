@@ -64,9 +64,11 @@ The next issue was working out which payloads written to which MQTT topic allowe
 
 Each relay (CH and HW) has 3 modes: off, auto and heat.
 
-off is self explanatory auto relates to the appropriate relay being set to on/off according to a schedule set up on the thermostat (SLT2) heat switches the appropriate relay to on (ie demand for CH or HW, boiler comes on), although other setting appear to come into play (see notes below) I have no use for the 'auto' mode as my automation software (Domoticz) controls that. All I require is to be able to switch the two relays independantly.
+- off:- self-explanatory. Relay is switched to off 
+- auto:- relates to the relay being set to on/off according to a schedule set up on the thermostat (SLT2). I have no use for the 'auto' mode as my automation software (Domoticz) controls that. All I require is to be able to switch the two relays independently.
+- heat:- turns 'on' the relevant relay dependant on the thermostat setpoint.  (ie demand for CH or HW, boiler comes on), although other settings appear to come into play
 
-Initially I thought this may be accomplished by just changing heat/water modes (see above), however, I discovered that a sequence of commands including setting heat/water mode, thermostat setting (for CH, not valid for HW) and "temperature_setpoint_hold_heat/water" settings are actually required. (Unless someone else knows better).
+Initially I thought this may be accomplished by just changing these heat/water modes, however, I discovered that a sequence of mqqt publishes including setting heat/water mode, thermostat setting (for CH, not valid for HW) and "temperature_setpoint_hold_heat/water" settings are actually required. (Unless someone else knows better).
 
 In order to experiment easier and visualise the flow of commands to be issued to MQTT, I created a 'quick and dirty' Node-RED flow. (see flow below). 
 
