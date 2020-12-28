@@ -81,7 +81,7 @@ This connects to a local mqtt broker - so if re-using this flow, be sure to chan
 Also note that it incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
 
 
-## Relay Control
+## Relay Control - Hot Water
 
 Hot Water relay control is relatively simple. Just publish 3 mqqt messages for each state (Off/On). (The 'get' message is required):-
 
@@ -104,6 +104,31 @@ Hot Water relay control is relatively simple. Just publish 3 mqqt messages for e
 Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function.
 
 
+## Relay Control - Heating
+
+Heating relay control is slightly different to the simple on/off Hot Water relay control. As well as publishing 3 mqqt messages for each CH relay state (Off/On). (The 'get' message is once again required). Relay control is also affected by occupied_heating_setpoint_heat (CH Thermostat SP). ie Setting this to a low value (less than thermostat temperature, will set the CH relay to 'off' OR setting this to a high value (greater than thermostat temperature, will set the CH relay to 'on'.
+
+The message sequence to set up CH on/off mode is:-
+
+#### Switch off CH Relay mqtt message sequence (SLT2 displays 'Off'):-
+
+1. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "off"}`
+
+2. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
+
+3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
+
+#### Switch on CH Relay mqtt message sequence (SLT2 displays 'Manual'):-
+
+1. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_heat": "heat"}`
+
+2. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_heat": ""}`
+
+3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_heat": "1"}`
+
+Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function. To achieve this, send a thermostat setting message:-
+
+Topic `zigbee2mqtt/FRIENDLY_NAME/set` Message `{"occupied_heating_setpoint_heat": VALUE}` where value is Thermostat setpoint in degrees C
 
 
 ## NOTES on SLR2/SLT2 functionality
