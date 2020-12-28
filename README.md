@@ -83,7 +83,7 @@ Also note that it incorporates flows to enable Domoticz thermostats/switches to 
 
 ## Relay Control
 
-Switch off HW Relay mqtt message sequence:-
+#### Switch off HW Relay mqtt message sequence (SLT2 displays 'Off'):-
 
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "off"}`
 
@@ -91,7 +91,7 @@ Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water
 
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
 
-Switch on HW Relay mqtt message sequence:-
+#### Switch on HW Relay mqtt message sequence (SLT2 displays 'On'):-
 
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "heat"}`
 
