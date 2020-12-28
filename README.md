@@ -21,9 +21,9 @@ Until now, I have been reliant on controlling it using undocumented APIs via the
 
 Fortunately, support for the British Gas Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
-This is a repository of my node-RED flow and notes regarding my Hive Active controller testing and findings over the last couple of weeks. Some of it may be just plain wrong. However my Domoticz system has been working fine for a few days using the mqtt publish messages found in the node-RED flow.
+This is a repository of my node-RED flow and notes regarding my Hive Active controller testing and findings over the last couple of weeks. Some of it may be just plain wrong. However my test SLR2/SLT2, which has been shadowing my live Hive Active equipment connected to my Domoticz system, has been working fine for a few days using the mqtt publish messages found in the node-RED flow. (See message format below)
 
-Feel free to re-use any of the information here if it helps, but be sure to run your own tests and ensure that any of this is 'fit for your purpose'.
+Feel free to re-use any of the information here if it helps, but be sure to run your own tests and ensure that any/all of this is 'fit for your purpose'.
 
 
 My Setup
@@ -140,3 +140,17 @@ The SLR2 controls the switch timing of the CH/HW relays in the case of sending r
 The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me as this is done from my home automation software (Domoticz). I also believe that zigbee2MQTT will require the addition of new 'endpopints' to allow the programming of this schedule from mqtt should this functionality be rwuired at some point
 
 When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination. I believe this is a 'frost stat' function automatically supported by the SLR2/SLT2 combination.
+
+
+## To Do List
+
+Next steps are:-
+
+1. Disconnect live Controller from my home system and replace with the 'test' controller (SLR2) along with the thermostat (SLT2)
+
+2. Once disconnected. My current Controller and newer style thermostat will be reset then paired with my zigbee network to become a new test system. I am interested to find if there are any differences (functional and/or firmware) between older style Hive thermostat (SLT2) and newer style thermostat.
+
+Watch this space :)
+
+
+
