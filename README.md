@@ -80,8 +80,29 @@ This connects to a local mqtt broker - so if re-using this flow, be sure to chan
 
 Also note that it incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
 
-NOTES on SLR2/SLT2 functionality
-----
+
+## Relay Control
+
+Switch off HW Relay mqtt message sequence:-
+
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "off"}`
+
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
+
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
+
+Switch on HW Relay mqtt message sequence:-
+
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "heat"}`
+
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
+
+Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "1"}
+
+
+
+
+## NOTES on SLR2/SLT2 functionality
 
 There is additional functionality built in to the Hive Active SLR2/SLT2 pair which at present cannot be overridden by external control.
 
