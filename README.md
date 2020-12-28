@@ -2,7 +2,7 @@
 # Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes  28th Dec 2020
 
 
-UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments.
+UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments. Version 0.3
 
 UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenkk/zigbee2mqtt/issues/5357
 
