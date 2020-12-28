@@ -21,7 +21,7 @@ Until now, I have been reliant on controlling it using undocumented APIs via the
 
 Fortunately, support for the British Gas Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
-This github 'gist' is a repository of my Hive controller testing and findings over the last couple of weeks. Some of it may be just plain wrong. However my Domoticz system has been working fine for a few days using the mqtt publish messages found in the node-RED flow attached.
+This is a repository of my node-RED flow and notes regarding my Hive Active controller testing and findings over the last couple of weeks. Some of it may be just plain wrong. However my Domoticz system has been working fine for a few days using the mqtt publish messages found in the node-RED flow.
 
 Feel free to re-use any of the information here if it helps, but be sure to run your own tests and ensure that any of this is 'fit for your purpose'.
 
