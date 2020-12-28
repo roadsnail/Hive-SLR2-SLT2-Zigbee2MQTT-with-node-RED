@@ -128,7 +128,7 @@ The message sequence to set up CH on/off mode is:-
 
 Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function. To achieve this, send a thermostat setting message:-
 
-Topic `zigbee2mqtt/FRIENDLY_NAME/set` Message `{"occupied_heating_setpoint_heat": VALUE}` where value is Thermostat setpoint in degrees C
+Topic `zigbee2mqtt/FRIENDLY_NAME/set` Message `{"occupied_heating_setpoint_heat": VALUE}` where VALUE is Thermostat setpoint in degrees C
 
 
 ## NOTES on SLR2/SLT2 functionality
