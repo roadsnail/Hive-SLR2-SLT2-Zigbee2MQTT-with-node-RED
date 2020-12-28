@@ -83,6 +83,8 @@ Also note that it incorporates flows to enable Domoticz thermostats/switches to 
 
 ## Relay Control
 
+Hot Water relay control is relatively simple. Just publish 3 mqqt messages for each state (Off/On). The 'get' message is required:-
+
 #### Switch off HW Relay mqtt message sequence (SLT2 displays 'Off'):-
 
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "off"}`
@@ -98,6 +100,8 @@ Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
 
 Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "1"}
+
+Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function.
 
 
 
