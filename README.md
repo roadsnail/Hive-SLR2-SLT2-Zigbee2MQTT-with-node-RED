@@ -126,7 +126,7 @@ The message sequence to set up CH on/off mode is:-
 
 3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_heat": "1"}`
 
-Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function. To achieve this, send a thermostat setting message:-
+Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat SP value. To achieve this, send a thermostat setting message:-
 
 Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Message `VALUE` where VALUE is Thermostat setpoint in degrees C (eg. 20.5)
 
