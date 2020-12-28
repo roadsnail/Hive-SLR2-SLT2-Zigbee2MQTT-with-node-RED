@@ -17,7 +17,7 @@ Background
 ----
 My aim is to control my home Hive Active Central Heating/Hot Water system on my local network without requiring Internet access to the British Gas Hive 'cloud'. 
 
-Until now, I have been reliant on controlling it using undocumented APIs via the British Gas Hive cloud infrastructure. Not ideal as BG change their APIs on occasions resulting in Hive downtime within my home automation platform.
+Until now, I have been reliant on controlling it using undocumented APIs via the British Gas Hive cloud infrastructure. Not ideal as BG change their APIs on occasions resulting in Hive CH/HW control downtime on my home automation platform, potentially resulting in a too hot or cold house!
 
 Fortunately, support for the British Gas Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
