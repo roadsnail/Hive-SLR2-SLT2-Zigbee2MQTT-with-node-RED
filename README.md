@@ -1,5 +1,5 @@
 
-## Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes  28th Dec 2020
+# Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes  28th Dec 2020
 
 
 UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments.
@@ -8,8 +8,7 @@ UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenk
 
 
 
-CH/HW Controller - node-RED screenshot
-----
+## CH/HW Controller - node-RED screenshot
 
 ![CH-HW-Hive-Controller-node-RED-screenshot](https://user-images.githubusercontent.com/24318993/103233967-5a7af000-4936-11eb-81c0-5a5e522238ba.png)
 
