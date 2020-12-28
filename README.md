@@ -87,19 +87,19 @@ Hot Water relay control is relatively simple. Just publish 3 mqqt messages for e
 
 #### Switch off HW Relay mqtt message sequence (SLT2 displays 'Off'):-
 
-1. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "off"}`
+1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_water": "off"}`
 
-2. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
+2. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/get` Message `{"system_mode_water": ""}`
 
-3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
+3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
 
 #### Switch on HW Relay mqtt message sequence (SLT2 displays 'On'):-
 
-1. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "heat"}`
+1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_water": "heat"}`
 
-2. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
+2. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/get` Message `{"system_mode_water": ""}`
 
-3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "1"}`
+3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "1"}`
 
 Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function.
 
@@ -112,19 +112,19 @@ The message sequence to set up CH on/off mode is:-
 
 #### Switch off CH Relay mqtt message sequence (SLT2 displays 'Off'):-
 
-1. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_water": "off"}`
+1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_water": "off"}`
 
-2. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_water": ""}`
+2. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/get` Message `{"system_mode_water": ""}`
 
-3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
+3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
 
 #### Switch on CH Relay mqtt message sequence (SLT2 displays 'Manual'):-
 
-1. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"system_mode_heat": "heat"}`
+1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_heat": "heat"}`
 
-2. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/get` Message `{"system_mode_heat": ""}`
+2. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/get` Message `{"system_mode_heat": ""}`
 
-3. Topic `zigbee2mqtt/Boiler Controller SLR2/heat/set` Message `{"temperature_setpoint_hold_heat": "1"}`
+3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_heat": "1"}`
 
 Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat SP value. To achieve this, send a thermostat setting message:-
 
@@ -135,8 +135,8 @@ Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Messag
 
 There is additional functionality built in to the Hive Active SLR2/SLT2 pair which at present cannot be overridden by external control.
 
-The SLR2 controls the switch timing of the CH/HW relays in the case of rapid CH/HW command switching. ie. In order to protect a connected boiler from rapid switching of these signals resulting in possible damage, a delay is built in to the SLR2. This mean that the controller goes into a mode where the relay LED status indicators flash to indicate that there will be a delay before the physical activation/deactivation of the appropriate relay. The relay switch delay is around 30 seconds
+The SLR2 controls the switch timing of the CH/HW relays in the case of sending rapid on/off switch commands to the controller. ie. In order to protect a connected boiler from rapid switching of these signals resulting in possible damage, a delay is built in to SLR2 firmware preventing such rapid toggling. This mean that the controller goes into a mode where the relay LED status indicators flash to indicate that there will be a delay before the physical activation/deactivation of the appropriate relay. The relay switch delay is around 30 seconds
 
-The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me as this is done from my home automation software (Domoticz). I also believe that zigbee2MQTT would require the addition of new 'endpopints' to allow the programming of this schedule from mqtt.
+The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me as this is done from my home automation software (Domoticz). I also believe that zigbee2MQTT will require the addition of new 'endpopints' to allow the programming of this schedule from mqtt should this functionality be rwuired at some point
 
 When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination. I believe this is a 'frost stat' function automatically supported by the SLR2/SLT2 combination.
