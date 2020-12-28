@@ -8,9 +8,16 @@ UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments.
 UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenkk/zigbee2mqtt/issues/5357
 
 
+
+CH/HW Controller - node-RED screenshot
+----
+
+![CH-HW-Hive-Controller-node-RED-screenshot](https://user-images.githubusercontent.com/24318993/103233967-5a7af000-4936-11eb-81c0-5a5e522238ba.png)
+
+
 Background
 ----
-My aim is to control my home Hive system (HW/CH on/off) without requiring Internet access to the British Gas Hive 'cloud'. Until now, I have been reliant on controlling my Hive system using undocumented APIs via the British Gas Hive cloud infrastructure. Not ideal as BG change their APIs on occasions resulting in Hive downtime.
+My aim is to control my home Hive system (HW/CH on/off) without requiring Internet access to the British Gas Hive 'cloud'. Until now, I have been reliant on controlling my Hive system using undocumented APIs via the British Gas Hive cloud infrastructure. Not ideal as BG change their APIs on occasions resulting in Hive downtime within my home automation platform.
 
 Fortunately, support for the British Gas Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
