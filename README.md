@@ -72,19 +72,19 @@ Initially I thought this may be accomplished by just changing these heat/water m
 
 In order to experiment easier and visualise the flow of commands to be issued to MQTT, I created a 'quick and dirty' Node-RED flow. (see flow below). 
 
-node-RED flow
+node-RED flow (flow.json)
 ----
-This connects to mqtt broker - so if re-using this flow, be sure to change any mqtt publish/subscribe nodes to reflect your own mqtt broker IP and/or authorisation.
+This connects to a local mqtt broker - so if re-using this flow, be sure to change any mqtt publish/subscribe nodes to reflect your own mqtt broker IP and/or authorisation.
 
-Also note that the flow incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
+Also note that it incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
 
 NOTES on SLR2/SLT2 functionality
 ----
 
-Note that there is additional functionality built in to the SLR2/SLT2 pair which at present cannot be overridden by external control.
+There is additional functionality built in to the Hive Active SLR2/SLT2 pair which at present cannot be overridden by external control.
 
-The SLR2 controls the switch timing of the CH/HW relays in the case of rapid CH/HW command switching. ie. In order to protect a connected boiler from rapid switching of these signals resulting in possible damage, a delay is built in to the SLR2 meaning that the controller goes into a mode where the relay LED status indicators flash to indicate that there will be a delay before the physical activation/deactivation of the appropriate relay.
+The SLR2 controls the switch timing of the CH/HW relays in the case of rapid CH/HW command switching. ie. In order to protect a connected boiler from rapid switching of these signals resulting in possible damage, a delay is built in to the SLR2. This mean that the controller goes into a mode where the relay LED status indicators flash to indicate that there will be a delay before the physical activation/deactivation of the appropriate relay. The relay switch delay is around 30 seconds
 
-The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me. I also believe that Zigbee2MQTT would require the addition of new 'endpopints' to allow the programming from mqtt
+The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me as this is done from my home automation software (Domoticz). I also believe that zigbee2MQTT would require the addition of new 'endpopints' to allow the programming of this schedule from mqtt.
 
-When setting the heat control to off, the CH thermostat automatically switches to 1 deg C for the SLR2/SLT2 combination. I believe this is a 'frost stat' function automatically supported by the SLR2/SLT2 combination.
+When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination. I believe this is a 'frost stat' function automatically supported by the SLR2/SLT2 combination.
