@@ -32,7 +32,7 @@ My Home Automation (Domoticz) runs on a Raspberry Pi 4. In addition I use mosqui
 
 Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however this plugin doesn't currently support properly the Hive SLR2/SLT2 combination. Therefore I am currently using mqqt publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2.
 
-Status (ie the state of CH/HW relays, thermostat setpoint and temperature) are handled by a node-RED flow which publishes to domoticz/in topic which updates devices in Domoticz. 
+Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 are handled by a node-RED flow which publishes to domoticz/in topic thus updating devices in Domoticz. 
 
 
 ## Testing
