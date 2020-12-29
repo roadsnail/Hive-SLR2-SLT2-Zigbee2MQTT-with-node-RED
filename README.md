@@ -160,7 +160,7 @@ There is additional functionality built in to the Hive Active SLR2/SLT2 pair whi
 
 The SLR2 controls the switch timing of the CH/HW relays in the case of sending rapid on/off switch commands to the controller. ie. In order to protect a connected boiler from rapid switching of these signals resulting in possible damage, a delay is built in to SLR2 firmware preventing such rapid toggling. This mean that the controller goes into a mode where the relay LED status indicators flash to indicate that there will be a delay before the physical activation/deactivation of the appropriate relay. The relay switch delay is around 30 seconds
 
-The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me as this is done from my home automation software (Domoticz). I also believe that zigbee2MQTT will require the addition of new 'endpopints' to allow the programming of this schedule from mqtt should this functionality be rwuired at some point
+The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This is not important to me as this is achieved using scripts in my home automation software. I also believe that zigbee2MQTT will require the addition of new 'endpopints' to allow the programming of this schedule from mqtt should this functionality be required at some point in the future.
 
 When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination ('frost stat' setting).
 
