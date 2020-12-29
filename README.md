@@ -141,15 +141,15 @@ Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Messag
 
 Subscribing to MQTT topic **zigbee2mqtt/FRIENDLY_NAME** allows the SLR2 status to be read.
 
-### CH/HW Relay Status
+#### CH/HW Relay Status
 
 The status of each relay, 'idle' == Off/'heat' == On, can be determined from **running_state_heat** and **running_state_water** status
 
-### CH Thermostat Setting
+#### CH Thermostat Setting
 
 Can be read from **occupied_heating_setpoint_heat**
 
-### Thermostat (SLT2) Temperature
+#### Thermostat (SLT2) Temperature
 
 Can be read from **local_temperature_heat**
 
