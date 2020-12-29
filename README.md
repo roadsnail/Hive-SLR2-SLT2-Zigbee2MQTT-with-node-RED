@@ -83,14 +83,14 @@ In order to experiment easier and visualise the flow of commands to be issued to
 
 ## node-RED flow (flow.json)
 
-This connects to a local mqtt broker - so if re-using this flow, be sure to change any mqtt publish/subscribe nodes to reflect your own mqtt broker IP and/or authorisation.
+This connects to my local mqtt broker - so if re-using this flow, be sure to change any mqtt publish/subscribe nodes to reflect your own mqtt broker IP and/or authorisation.
 
 Also note that it incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
 
 
 ## Relay Control - Hot Water
 
-Hot Water relay control is relatively simple. Just publish 3 mqqt messages for each state (Off/On). (The 'get' message is required):-
+Hot Water relay control is relatively simple. Just publish 3 mqqt messages in sequence for each state (Off/On). (The 'get' message is required):-
 
 #### Switch off HW Relay mqtt message sequence (SLT2 displays 'Off'):-
 
@@ -108,7 +108,7 @@ Hot Water relay control is relatively simple. Just publish 3 mqqt messages for e
 
 3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "1"}`
 
-Note that the water thermostat occupied_heating_setpoint_water has no effect on this this function.
+Note that the water thermostat **occupied_heating_setpoint_water** has no effect on this this function.
 
 
 ## Relay Control - Heating
@@ -133,7 +133,7 @@ The message sequence to set up CH on/off mode is:-
 
 3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_heat": "1"}`
 
-Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat SP value. To achieve this, send a thermostat setting message:-
+Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat SP value. To achieve this, send a thermostat set value message:-
 
 Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Message `VALUE` where VALUE is Thermostat setpoint in degrees C (eg. 20.5)
 
@@ -146,7 +146,7 @@ The SLR2 controls the switch timing of the CH/HW relays in the case of sending r
 
 The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This functionality is not important to me as this is done from my home automation software (Domoticz). I also believe that zigbee2MQTT will require the addition of new 'endpopints' to allow the programming of this schedule from mqtt should this functionality be rwuired at some point
 
-When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination. I believe this is a 'frost stat' function automatically supported by the SLR2/SLT2 combination.
+When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination ('frost stat' setting).
 
 
 ## To Do List
