@@ -113,7 +113,7 @@ Note that the water thermostat **occupied_heating_setpoint_water** has no effect
 
 ## Relay Control - Heating
 
-Heating relay control is slightly different to the simple on/off Hot Water relay control. As well as publishing 3 mqqt messages for each CH relay state (Off/On). (The 'get' message is once again required). Relay control is also affected by occupied_heating_setpoint_heat (CH Thermostat SP). ie Setting this to a low value (less than thermostat temperature, will set the CH relay to 'off' OR setting this to a high value (greater than thermostat temperature, will set the CH relay to 'on'.
+Heating relay control is slightly different to the simple on/off Hot Water relay control. As well as publishing 3 mqqt messages for each CH relay state (Off/On). (The 'get' message is once again required). Relay control is also affected by **occupied_heating_setpoint_heat** (CH Thermostat SP). ie Setting this to a low value (less than thermostat temperature, will set the CH relay to 'off' OR setting this to a high value (greater than thermostat temperature, will set the CH relay to 'on'.
 
 The message sequence to set up CH on/off mode is:-
 
@@ -136,6 +136,22 @@ The message sequence to set up CH on/off mode is:-
 Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat SP value. To achieve this, send a thermostat set value message:-
 
 Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Message `VALUE` where VALUE is Thermostat setpoint in degrees C (eg. 20.5)
+
+## SLR2 Status
+
+Subscribing to MQTT topic **zigbee2mqtt/FRIENDLY_NAME** allows the SLR2 status to be read.
+
+### CH/HW Relay Status
+
+The status of each relay, 'idle' == Off/'heat' == On, can be determined from **running_state_heat** and **running_state_water** status
+
+### CH Thermostat Setting
+
+Can be read from **occupied_heating_setpoint_heat**
+
+### Thermostat (SLT2) Temperature
+
+Can be read from **local_temperature_heat**
 
 
 ## NOTES on SLR2/SLT2 functionality
