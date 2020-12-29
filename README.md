@@ -41,9 +41,9 @@ Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system)
 
 Zigbee2mqtt discovered the two devices and they were added to my Zigbee network. Both devices were next given 'friendly' zigbee names (Boiler Controller SLR2 and Boiler Thermostat SLT2)
 
-I also enabled the newish zigbee2MQTT front end https://www.zigbee2mqtt.io/information/frontend.html to allow me to easily check out SLR2/SLT2 settings. You will see from looking at the functions exposed for the controller/thermostat pair that the SLR2/SLT2 may be controlled by sending mqtt commands to the controller (SLR2) device. 2-way communication between the controller and thermostat must be by zigbee under local firmware control?
+I also enabled the newish zigbee2MQTT front end https://www.zigbee2mqtt.io/information/frontend.html to allow me to easily check out SLR2/SLT2 settings. You will see from looking at the functions exposed for the controller/thermostat pair that the SLR2/SLT2 may be controlled by sending mqtt commands to the controller (SLR2) device only. Communication taking place over the zigbee network between the controller and thermostat, (eg. thermostat temperature), must be controlled by firmware local to the devices. 
 
-After discovering the SLR2/SLT2, my home automation software, Domoticz utilising the zigbee2mqtt plugin, detected three new Domoticz devices. However, the zigbee2mqtt version I am running does not detect the SLR2/SLT2 properly. I guess support will be properly added in due course. Meanwhile I will control the SLR2 with my own mqtt commands within Domoticz using dzVents and a node-RED flow.
+After zigbee2MQTT discovered the SLR2/SLT2 pair, my home automation software, Domoticz utilising a zigbee2mqtt Python plugin, detected three new Domoticz devices. However, the zigbee2mqtt plugin version I am running does not detect the SLR2/SLT2 properly. I guess support will be properly added in due course. Meanwhile I will control the SLR2 with my own mqtt commands within Domoticz using dzVents and the help of a node-RED flow.
 
 
 Initial testing with Zigbee2MQTT dev revision 1.16.2 initially threw up an issue with the 'water' endpoint (required for HW part of controller) being missing, requiring the addition of 'water', to the Const endpointNames section in utils.js
@@ -62,7 +62,7 @@ followed by Zigbee2MQTT restart.
 
 ## Controlling CH/HW Relays - Investigating MQTT messages
 
-The next issue was working out which payloads written to which MQTT topic allowed me to switch the CH and HW relays.
+The next issue was working out which payloads written to which MQTT topic would allow me to switch the CH and HW relays from my dzVents heating controller script.
 
 Each relay (CH and HW) has 3 modes: off, auto and heat.
 
@@ -72,7 +72,7 @@ Each relay (CH and HW) has 3 modes: off, auto and heat.
 
 Initially I thought relay switching may be accomplished by just changing these heat/water modes, however, I discovered that a sequence of mqqt publishes including setting heat/water mode, thermostat setting (for CH, not valid for HW) and "temperature_setpoint_hold_heat/water" settings are actually required. (Unless someone else knows better).
 
-In order to experiment easier and visualise the flow of commands to be issued to the MQTT broker, I created a 'quick and dirty' Node-RED flow. (flow.json) allowing me to easily try out combinations of MQTT messages to allow me to:-
+In order to experiment easier and visualise the flow of commands to be issued to the MQTT broker, I created a 'quick and dirty' Node-RED flow. (flow.json in this repository) allowing me to easily try out combinations of MQTT messages to allow me to:-
 
 1. Switch the HW and CH relays on/off from a virtual switch in Domoticz (or the node-RED flow ON/OFF buttons).
 
