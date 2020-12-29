@@ -13,7 +13,7 @@ UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenk
 ![CH-HW-Hive-Controller-node-RED-screenshot](https://user-images.githubusercontent.com/24318993/103233967-5a7af000-4936-11eb-81c0-5a5e522238ba.png)
 
 
-##Background
+## Background
 
 My aim is to control my home Hive Active Central Heating/Hot Water system on my local network without requiring Internet access to the British Gas Hive 'cloud'. 
 
@@ -26,7 +26,7 @@ This is a repository of my node-RED flow and notes regarding my Hive Active cont
 Feel free to re-use any of the information here if it helps, but be sure to run your own tests and ensure that any/all of this is 'fit for your purpose'.
 
 
-##My Setup
+## My Setup
 
 My Home Automation (Domoticz) runs on a Raspberry Pi 4. In addition I use mosquitto message broker, node-RED and the aforementioned zigbee2mqtt. 
 
@@ -35,7 +35,7 @@ Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz plugin - 
 Status (ie the state of CH/HW relays, thermostat setpoint and temperature) are handled by a node-RED flow which publishes to domoticz/in topic which updates devices in Domoticz. 
 
 
-##Testing
+## Testing
 
 Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system), I placed zigbee2mqtt into pairing mode - then reset/added the Hive Controller/Thermostat. (Instructions for reset/pair may be found with a google search)
 
@@ -60,7 +60,7 @@ becomes
 
 followed by Zigbee2MQTT restart.
 
-##Controlling CH/HW Relays - Investigating MQTT messages
+## Controlling CH/HW Relays - Investigating MQTT messages
 
 The next issue was working out which payloads written to which MQTT topic allowed me to switch the CH and HW relays.
 
@@ -74,7 +74,7 @@ Initially I thought this may be accomplished by just changing these heat/water m
 
 In order to experiment easier and visualise the flow of commands to be issued to MQTT, I created a 'quick and dirty' Node-RED flow. (see flow below). 
 
-##node-RED flow (flow.json)
+## node-RED flow (flow.json)
 
 This connects to a local mqtt broker - so if re-using this flow, be sure to change any mqtt publish/subscribe nodes to reflect your own mqtt broker IP and/or authorisation.
 
