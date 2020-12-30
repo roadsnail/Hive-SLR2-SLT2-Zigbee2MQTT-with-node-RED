@@ -159,7 +159,7 @@ Can be read from **local_temperature_heat**
 
 The following is a sample dzVents script containing some MQTT command sequences to set relays and change CH thermostat setpoint. Publish to MQTT broker is taken care of by passing mosquitto_pub commands to the operating system.
 
-`return {
+return {
     logging = {
         --level = domoticz.LOG_DEBUG,
         level = domoticz.LOG_ERROR,
@@ -236,7 +236,7 @@ The following is a sample dzVents script containing some MQTT command sequences 
             end
         end
     end
-}`
+}
 
 
 ## NOTES on SLR2/SLT2 functionality
