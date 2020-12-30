@@ -28,11 +28,13 @@ Feel free to re-use any of the information here if it helps, but be sure to run 
 
 ## My Setup
 
-My Home Automation (Domoticz) runs on a Raspberry Pi 4. In addition I use mosquitto message broker, node-RED and the aforementioned zigbee2mqtt. 
+My Home Automation (Domoticz) runs on a Raspberry Pi 4. In addition I run mosquitto message broker, node-RED and the aforementioned zigbee2mqtt. 
 
-Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however this plugin doesn't currently support properly the Hive SLR2/SLT2 combination. Therefore I am currently using mqqt publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2.
+Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz Python plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however at this time the plugin doesn't currently support properly the Hive SLR2/SLT2 combination. 
 
-Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 are handled by a node-RED flow which publishes to domoticz/in topic thus updating devices in Domoticz. 
+As a result of this I am using mqqt publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2.
+
+Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
 
 ## Testing
@@ -41,9 +43,9 @@ Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system)
 
 Zigbee2mqtt discovered the two devices and they were added to my Zigbee network. Both devices were next given 'friendly' zigbee names (Boiler Controller SLR2 and Boiler Thermostat SLT2)
 
-I also enabled the newish zigbee2MQTT front end https://www.zigbee2mqtt.io/information/frontend.html to allow me to easily check out SLR2/SLT2 settings. You will see from looking at the functions exposed for the controller/thermostat pair that the SLR2/SLT2 may be controlled by sending mqtt commands to the controller (SLR2) device only. Communication taking place over the zigbee network between the controller and thermostat, (eg. thermostat temperature), must be controlled by firmware local to the devices. 
+I also enabled the newish zigbee2MQTT front end https://www.zigbee2mqtt.io/information/frontend.html to allow me to easily check out SLR2/SLT2 settings. Looking at the functions exposed for the controller/thermostat pair, the SLR2/SLT2 may be controlled by sending mqtt commands to the controller (SLR2) device only. Communication taking place over the zigbee network between the controller and thermostat, (eg. thermostat temperature), must be controlled by firmware local to the devices. 
 
-After zigbee2MQTT discovered the SLR2/SLT2 pair, my home automation software, Domoticz utilising a zigbee2mqtt Python plugin, detected three new Domoticz devices. However, the zigbee2mqtt plugin version I am running does not detect the SLR2/SLT2 properly. I guess support will be properly added in due course. Meanwhile I will control the SLR2 with my own mqtt commands within Domoticz using dzVents and the help of a node-RED flow.
+After zigbee2MQTT discovered the SLR2/SLT2 pair, my home automation software, Domoticz utilising a zigbee2mqtt Python plugin, created three new Domoticz devices. However, the zigbee2mqtt plugin version I am running does not detect the SLR2/SLT2 properly so I am currently ignoring these devices. I guess support will be properly added in due course. Meanwhile I will control the SLR2 with my own mqtt commands (mosquitto_pub) within Domoticz using dzVents and check the status of the SLR2 with the help of a node-RED flow.
 
 
 Initial testing with Zigbee2MQTT dev revision 1.16.2 initially threw up an issue with the 'water' endpoint (required for HW part of controller) being missing, requiring the addition of 'water', to the Const endpointNames section in utils.js
