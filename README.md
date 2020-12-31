@@ -1,5 +1,6 @@
 
-# Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes
+# Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, zigbee2MQTT and Node-RED - Working notes
+UPDATE - 31st Dec 2020 - Now testing Hive thermostat type SLT3 (shiny version with rotary encoder)
 
 UPDATE - 31st Dec 2020 - node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1
 
@@ -42,7 +43,7 @@ As a result of this I am using mqqt publish/subscribe calls directly from Domoti
 Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
 
-## Testing
+## Testing (SLR2 and SLT2 combination)
 
 Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system), I placed zigbee2mqtt into pairing mode - then reset/added the Hive Controller/Thermostat to my Zigbee network. (Instructions for reset/pair below)
 
@@ -75,6 +76,35 @@ followed by a zigbee2MQTT restart.
 4. On SLR2, press 'Central Heating' button until it flashes pink. Release then press and hold it again. It will flash amber and the controller should join the network.
 5. Replace batteries in SLT2 while pressing back and menu buttons to perform a reset. Hopefully, it will reboot and join the network (check logs).
 
+## Testing (SLR2 and SLT3 combination)
+
+Following on from testing the older Hive Active SLT2 Thermostat working with the SLR2 Controller. I have done some preliminary testing of the newer Hive Active Thermostat, the SLT3 (shiny with rotary encoder) and SLR2 combination.
+
+Pairing of these is carried out in a similar manner to the SLR2/SLT2 versions.
+
+However, there are some differences in setup between the older SLT2 and newer SLT3 thermostats. 
+
+I observed that the following a factory reset of the SLT3 - It joined my Zigbee network and then went into setup mode - requesting a HW/CH schedule to be setup.
+
+This may be skipped and the thermostat subsequently displays the current temperature and status of CH/HW to both be 'Sch'
+
+At this point the controller does not publish a full list of messages on the its root topic zigbee2mqtt/FRIENDLY_NAME
+
+By connecting a 'debug' node to the output of the node-RED MQTT input node you can see that fewer messages are being sent from the Hive test system.
+
+To enable the missing messages relating to CH and HW relay control - 
+
+On the SLT3 thermostat:-
+Press **MENU** button
+Select **'Heat'** and set to **'Manual'** - Then press confirm button
+
+Similarly (for HW):-
+
+Press **MENU** button
+Select **'Hot Water'** and set to **'Always On'** - Then press confirm button
+
+
+This appears to enable the CH and HW On/Off buttons in the node-RED flow. The CH thermostat works, and the controller status appears to work in the same manner as the older SLR2/SLT2 combination.
 
 
 ## Controlling CH/HW Relays - Investigating MQTT messages
@@ -252,11 +282,10 @@ When setting the heat control to 'off', the CH thermostat setpoint automatically
 
 Next steps are:-
 
-1. Disconnect live Controller from my home system and replace with the 'test' controller (SLR2) along with the thermostat (SLT2)
+1. Disconnect live Controller from my home system and replace with the 'test' controller (SLR2) along with the thermostat (SLT2) - Done 31st Dec 2020
 
-2. Once disconnected. My current Controller and newer style thermostat will be reset then paired with my zigbee network to become a new test system. I am interested to find if there are any differences (functional and/or firmware) between older style Hive thermostat (SLT2) and newer style thermostat.
+2. Once disconnected. My current Controller and newer style thermostat will be reset then paired with my zigbee network to become a new test system. I am interested to find if there are any differences (functional and/or firmware) between older style Hive thermostat (SLT2) and newer style thermostat - In Progress 31st Dec 2020
 
-Watch this space :)
 
 
 
