@@ -44,11 +44,11 @@ Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **fro
 
 ## Devices
 
-![SLT3](https://user-images.githubusercontent.com/24318993/103422589-26076e00-4b9a-11eb-87cf-bd28548f8012.jpg) **SLT3** 
+![SLT3](https://user-images.githubusercontent.com/24318993/103422589-26076e00-4b9a-11eb-87cf-bd28548f8012.jpg) **SLT3 Thermostat** 
 
-![SLR2](https://user-images.githubusercontent.com/24318993/103422602-2f90d600-4b9a-11eb-8436-d0608720e210.jpg) **SLR2**
+![SLR2](https://user-images.githubusercontent.com/24318993/103422602-2f90d600-4b9a-11eb-8436-d0608720e210.jpg) **SLR2 CH/HW Controller**
 
-![SLT2](https://user-images.githubusercontent.com/24318993/103422610-3a4b6b00-4b9a-11eb-8f6d-a858fa836211.jpg) **SLT2**
+![SLT2](https://user-images.githubusercontent.com/24318993/103422610-3a4b6b00-4b9a-11eb-8f6d-a858fa836211.jpg) **SLT2 Thermostat**
 
 
 ## Testing (SLR2 and SLT2 combination)
