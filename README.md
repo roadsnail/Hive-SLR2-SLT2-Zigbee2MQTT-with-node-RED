@@ -104,6 +104,10 @@ This connects to my local mqtt broker - so if re-using this flow, be sure to cha
 
 Also note that it incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
 
+#### Issue: 
+
+node-RED dashboard does not display value. See fix https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1
+
 
 ## Relay Control - Hot Water
 
