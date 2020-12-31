@@ -1,5 +1,7 @@
 
-# Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes  28th Dec 2020
+# Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes
+
+UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
 
 UPDATE - 30th Dec 2020 - Add some Domoticz dzVents code snippets
 
@@ -40,7 +42,7 @@ Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **fro
 
 ## Testing
 
-Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system), I placed zigbee2mqtt into pairing mode - then reset/added the Hive Controller/Thermostat. (Instructions for reset/pair may be found with a google search)
+Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system), I placed zigbee2mqtt into pairing mode - then reset/added the Hive Controller/Thermostat to my Zigbee network. (Instructions for reset/pair below)
 
 Zigbee2mqtt discovered the two devices and they were added to my Zigbee network. Both devices were next given 'friendly' zigbee names (Boiler Controller SLR2 and Boiler Thermostat SLT2)
 
@@ -61,7 +63,17 @@ becomes
 
 `const endpointNames = [ 'left', 'right', 'center', 'bottom_left', 'bottom_right', 'default', 'top_left', 'top_right', 'white', 'rgb', 'cct', 'system', 'top', 'bottom', 'center_left', 'center_right', 'ep1', 'ep2', 'row_1', 'row_2', 'row_3', 'row_4', 'relay', 'l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8', 'button_1', 'button_2', 'button_3', 'button_4', 'button_5', 'button_6', 'button_7', 'button_8', 'button_9', 'button_10', 'button_11', 'button_12', 'button_13', 'button_14', 'button_15', 'button_16', 'button_17', 'button_18', 'button_19', 'button_20', 'button_light', 'button_fan_high', 'button_fan_med', 'button_fan_low', 'heat', 'cool', 'water', ];`
 
-followed by Zigbee2MQTT restart.
+followed by a zigbee2MQTT restart.
+
+## Pairing Instructions:
+
+1. Switch off Hive bridge
+2. Remove a battery from the thermostat SLT2 (I think SLT3 reset routine is similar)
+3. Enable zigbee2mqtt to allow it to accept new devices. (Logs will show pairing activity as it happens, hopefully)
+4. On SLR2, press 'Central Heating' button until it flashes pink. Release then press and hold it again. It will flash amber and the controller should join the network.
+5. Replace batteries in SLT2 while pressing back and menu buttons to perform a reset. Hopefully, it will reboot and join the network (check logs).
+
+
 
 ## Controlling CH/HW Relays - Investigating MQTT messages
 
