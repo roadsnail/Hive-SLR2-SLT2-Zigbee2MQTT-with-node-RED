@@ -42,6 +42,14 @@ As a result of this I am using mqqt publish/subscribe calls directly from Domoti
 
 Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
+## Devices
+
+![SLT3](https://user-images.githubusercontent.com/24318993/103422589-26076e00-4b9a-11eb-87cf-bd28548f8012.jpg) **SLT3** 
+
+![SLR2](https://user-images.githubusercontent.com/24318993/103422602-2f90d600-4b9a-11eb-8436-d0608720e210.jpg) **SLR2**
+
+![SLT2](https://user-images.githubusercontent.com/24318993/103422610-3a4b6b00-4b9a-11eb-8f6d-a858fa836211.jpg) **SLT2**
+
 
 ## Testing (SLR2 and SLT2 combination)
 
