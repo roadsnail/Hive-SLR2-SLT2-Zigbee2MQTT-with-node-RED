@@ -1,6 +1,8 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 - Domoticz, zigbee2MQTT and Node-RED - Working notes
 
+UPDATE - 31st Dec 2020 - node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1
+
 UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
 
 UPDATE - 30th Dec 2020 - Add some Domoticz dzVents code snippets
