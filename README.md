@@ -79,10 +79,10 @@ followed by a zigbee2MQTT restart.
 ## Pairing Instructions:
 
 1. Switch off Hive bridge
-2. Remove a battery from the thermostat SLT2 (I think SLT3 reset routine is similar)
+2. Remove a battery from the thermostat
 3. Enable zigbee2mqtt to allow it to accept new devices. (Logs will show pairing activity as it happens, hopefully)
 4. On SLR2, press 'Central Heating' button until it flashes pink. Release then press and hold it again. It will flash amber and the controller should join the network.
-5. Replace batteries in SLT2 while pressing back and menu buttons to perform a reset. Hopefully, it will reboot and join the network (check logs).
+5. Replace batteries in thermostat **while** pressing 'back' and 'menu' buttons to perform a reset. It will, reset reboot and join the network (check logs).
 
 ## Testing (SLR2 and SLT3 combination)
 
