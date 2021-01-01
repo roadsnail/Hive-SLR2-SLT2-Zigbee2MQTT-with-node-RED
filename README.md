@@ -286,16 +286,3 @@ The SLR2 controls the switch timing of the CH/HW relays in the case of sending r
 The SLR2/SLT2 combination supports CH/HW scheduling that may be programmed into the thermostat by a sequence of button presses. This is not important to me as this is achieved using scripts in my home automation software. I also believe that zigbee2MQTT will require the addition of new 'endpopints' to allow the programming of this schedule from mqtt should this functionality be required at some point in the future.
 
 When setting the heat control to 'off', the CH thermostat setpoint automatically switches to 1 deg C for the SLR2/SLT2 combination ('frost stat' setting).
-
-
-## To Do List
-
-Next steps are:-
-
-1. Disconnect live Controller from my home system and replace with the 'test' controller (SLR2) along with the thermostat (SLT2) - Done 31st Dec 2020
-
-2. Once disconnected. My current Controller and newer style thermostat will be reset then paired with my zigbee network to become a new test system. I am interested to find if there are any differences (functional and/or firmware) between older style Hive thermostat (SLT2) and newer style thermostat - In Progress 31st Dec 2020
-
-
-
-
