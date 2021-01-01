@@ -1,10 +1,10 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, zigbee2MQTT and Node-RED - Working notes
-UPDATE - 1st Jan 2020  - flow.json - Modify mqqt input node and feed into json parser. Version 0.4
+UPDATE - 1st Jan 2020  - flow.json - Modify mqqt input node and feed into json parser. Version 0.41
 
 UPDATE - 31st Dec 2020 - Now testing Hive thermostat type SLT3 (shiny version with rotary encoder)
 
-UPDATE - 31st Dec 2020 - node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1 . Fixed v0.4
+UPDATE - 31st Dec 2020 - node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1 . Fixed> v0.4
 
 UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
 
