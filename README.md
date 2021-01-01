@@ -42,6 +42,14 @@ As a result of this I am using mqqt publish/subscribe calls directly from Domoti
 
 Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
+## Devices
+
+![SLT3](https://user-images.githubusercontent.com/24318993/103422589-26076e00-4b9a-11eb-87cf-bd28548f8012.jpg) **SLT3 Thermostat** 
+
+![SLR2](https://user-images.githubusercontent.com/24318993/103422602-2f90d600-4b9a-11eb-8436-d0608720e210.jpg) **SLR2 CH/HW Controller**
+
+![SLT2](https://user-images.githubusercontent.com/24318993/103422610-3a4b6b00-4b9a-11eb-8f6d-a858fa836211.jpg) **SLT2 Thermostat**
+
 
 ## Testing (SLR2 and SLT2 combination)
 
@@ -71,10 +79,10 @@ followed by a zigbee2MQTT restart.
 ## Pairing Instructions:
 
 1. Switch off Hive bridge
-2. Remove a battery from the thermostat SLT2 (I think SLT3 reset routine is similar)
+2. Remove a battery from the thermostat
 3. Enable zigbee2mqtt to allow it to accept new devices. (Logs will show pairing activity as it happens, hopefully)
 4. On SLR2, press 'Central Heating' button until it flashes pink. Release then press and hold it again. It will flash amber and the controller should join the network.
-5. Replace batteries in SLT2 while pressing back and menu buttons to perform a reset. Hopefully, it will reboot and join the network (check logs).
+5. Replace batteries in thermostat **while** pressing 'back' and 'menu' buttons to perform a reset. It will, reset reboot and join the network (check logs).
 
 ## Testing (SLR2 and SLT3 combination)
 
