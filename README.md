@@ -42,7 +42,7 @@ Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz Python pl
 
 As a result of this I am using mqqt publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2. (See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED#domoticz-dzvents-code-snippets )
 
-Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
+Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/blob/main/flow.json which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
 ## Devices
 
