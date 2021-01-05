@@ -1,6 +1,6 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, zigbee2MQTT and Node-RED - Working notes
-UPDATE - 5th Jan 2020  -  CC2531 notes
+UPDATE - 5th Jan 2020  -  Added NOTES on CC2531 and zigbee2MQTT stability section
 
 UPDATE - 1st Jan 2020  - flow.json - Modify mqqt input node and feed into json parser. Version 0.41
 
@@ -303,4 +303,6 @@ This improved range as I presume the CC2531 receiver was not being overloaded wi
 
 I think I have traced the 'lockup' issue to a 'noisy' 5V supply voltage at the CC2531 probably due to a poor quality USB extension cable. I am guessing that the power wires are quite thin causing issues on the CC2531 when the coordinator is transmitting. In order to test this theory, I have soldered a 1000uF/10V capacitor directly across the power rails at the USB connector. (See picture)
 
-To date I have seen 15 days of continuous Zigbee network uptime without a single 'lockup'. 
+To date I have seen 15 days of continuous Zigbee network uptime without experiencing a single 'lockup'. (My Zigbee network availability is being monitored using a Domoticz 'watchdog' device that pings me a pushover message whenever the network appears to be down).
+
+
