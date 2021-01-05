@@ -301,8 +301,8 @@ This improved range as I presume the CC2531 receiver was not being overloaded wi
 
 ![cc2531](https://user-images.githubusercontent.com/24318993/103656165-2c159a00-4f60-11eb-9ee3-92964fdb687a.png)
 
-I think I have traced the 'lockup' issue to a 'noisy' 5V supply voltage at the CC2531 probably due to a poor quality USB extension cable. I am guessing that the power wires are quite thin causing issues on the CC2531 when the coordinator is transmitting. In order to test this theory, I have soldered a 1000uF/10V capacitor directly across the power rails at the USB connector. (See picture)
+I think I have traced the 'lockup' issue to a 'noisy' 5V supply voltage at the CC2531 probably due to a poor quality USB extension cable. I am guessing that the power wires are quite thin causing issues on the CC2531 when the coordinator is transmitting. In order to test this theory, I have soldered a 1000uF/10V electrolytic capacitor directly across the power rails at the USB connector. (See picture). Why 1000uF? Well that was what I had to hand and it physically fits into the USB dongle enclosure.
 
-To date I have seen 15 days of continuous Zigbee network uptime without experiencing a single 'lockup'. (My Zigbee network availability is being monitored using a Domoticz 'watchdog' device that pings me a pushover message whenever the network appears to be down).
+Since adding the capacitor, I have seen 15 days of continuous Zigbee network uptime without experiencing a single 'lockup'. (My Zigbee network availability is being monitored using a Domoticz 'watchdog' device that pings me a pushover message whenever the network appears to be down).
 
 
