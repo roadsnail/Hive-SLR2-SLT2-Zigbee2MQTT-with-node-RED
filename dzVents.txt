@@ -1,0 +1,78 @@
+return {
+    logging = {
+        --level = domoticz.LOG_DEBUG,
+        level = domoticz.LOG_ERROR,
+        marker = "Hive CHHW Test  "
+    },
+	on = {
+	   timer = {},
+	   devices = {
+            'CHSwitch','HWSwitch','CHRelay','HWRelay','TestSwitch'
+       },
+    },
+
+    execute = function(dz, item, triggerInfo)
+        
+        
+        local CHSwitch = dz.devices('CHSwitch')                         --Switch Hive CH on/off
+        local HWSwitch = dz.devices('HWSwitch')                         --HW Switch
+        local TestSwitch = dz.devices('TestSwitch')                     --Test switch to set Thermostat setpoint to a high value or low value
+        
+        -- function to make an OS command to be passed to mosquitto_pub. Topic and Message passed to function
+        function MakeMQTT(Topic, Message)
+            MQTTStr = "mosquitto_pub -r -h 192.168.2.10 -t 'TOPIC' -m 'MESSAGE'"                            --make cli command template. (See mosquitto_pub for syntax)
+            MQTTStr = string.gsub(MQTTStr, "TOPIC", Topic)                                                  --substitute TOPIC with Topic passed to function
+            MQTTStr = string.gsub(MQTTStr, "MESSAGE", tostring(Message))                                    --same for Message, but ensure message is a string
+            os.execute(MQTTStr)                                                                             --execute it
+        end
+        
+        function CHSetTherm(Temp)                                                                           --set CH thermostat setpoint to value passed in Temp
+            -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint      Message 23.5         --example thermostat setpoint topic/message
+		    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set/occupied_heating_setpoint',Temp)          --call function MakeMQTT passing topic/message (temperature SP)
+        end        
+        
+        
+        -- device triggers...        
+	    if (item.isDevice) then 
+
+		    if (item.name == 'HWSwitch') then                                                                   --HW Switch - switches HW relay on/off
+		        if (HWSwitch.state == 'On') then                                                                --publish 3 messages to SLR2 to turn on HW relay
+                    -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/set      Message {"system_mode_water": "heat"}
+                    -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/get      Message {"system_mode_water": ""}
+                    -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/set      Message {"temperature_setpoint_hold_water": "1"}		            
+		            MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_water\":\"heat\"}')
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/get','{\"system_mode_water\":\"\"}')
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"temperature_setpoint_hold_water\":\"1\"}')
+		        else
+		            -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/set      Message {"system_mode_water": "off"}         --HW relay to 'off' send these three topic
+                    -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/get      Message {"system_mode_water": ""}
+                    -- Topic zigbee2mqtt/FRIENDLY_NAME/heat/set      Message {"temperature_setpoint_hold_water": "0"}
+		            MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_water\":\"off\"}')     --publish 3 messages to SLR2 to turn off HW relay
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/get','{\"system_mode_water\":\"\"}')
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"temperature_setpoint_hold_water\":\"0\"}')
+		        end
+            end
+        
+            if (item.name == 'CHSwitch') then                                                                       --CH Switch. On sets SLR2 to 'manual', Off to 'off'
+		    if (CHSwitch.state == 'On') then
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_heat\":\"heat\"}')       --publish 3 messages to SLR2 to turn on CH relay
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/get','{\"system_mode_heat\":\"\"}')
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"temperature_setpoint_hold_heat\":\"1\"}')
+		        else
+		            MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_heat\":\"off\"}')        --publish 3 messages to SLR2 to turn off CH relay
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/get','{\"system_mode_heat\":\"\"}')
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"temperature_setpoint_hold_heat\":\"0\"}')
+
+		        end
+            end
+        
+            if (item.name == 'TestSwitch') then                                                                     --Test switch
+		        if (TestSwitch.state == 'On') then                                                                  --On... set CH thermostat to high setting.. say 24 deg C
+                    	    CHSetTherm(24)
+		        else
+		            CHSetTherm(14.5)                                                                                --Off... set CH thermostat to low setting.. say 14.5 deg C
+		        end
+            end
+        end
+    end
+}
