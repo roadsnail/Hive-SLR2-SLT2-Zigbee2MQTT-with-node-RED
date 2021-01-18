@@ -1,6 +1,6 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, zigbee2MQTT and Node-RED - Working notes
-UPDATE - 18th Jan 2021 - Update json.flow to v0.5 - Add support for SLR/SLT offlie/online
+UPDATE - 18th Jan 2021 - Update flow.json to v0.5 - Add support for SLR/SLT offlie/online
 
 UPDATE - 5th Jan 2021  -  Added NOTES on CC2531 and zigbee2MQTT stability section
 
