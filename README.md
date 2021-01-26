@@ -157,7 +157,7 @@ node-RED dashboard does not display value. See fix https://github.com/roadsnail/
 
 ## Relay Control - Hot Water
 
-Hot Water relay control is relatively simple. Just publish 3 mqqt messages in sequence for each state (Off/On). (The 'get' message is required):-
+Hot Water relay control is relatively simple. Just publish 3 mqqt messages in sequence for each state (Off/On). Although the controller publishes a 'water' temperature and thermostat value, these are not used. HW Relay can be simply switched using the below sequence. (The 'get' message is required):-
 
 #### Switch off HW Relay mqtt message sequence (SLT2 displays 'Off'):-
 
@@ -184,7 +184,7 @@ Heating relay control is slightly different to the simple on/off Hot Water relay
 
 The message sequence to set up CH on/off mode is:-
 
-#### Switch off CH Relay mqtt message sequence (SLT2 displays 'Off'):-
+#### Switch off CH Relay mqtt message sequence (SLT2 displays 'Off' and thermostat setting changes to 1deg C):-
 
 1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_water": "off"}`
 
@@ -192,7 +192,7 @@ The message sequence to set up CH on/off mode is:-
 
 3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
 
-#### Switch on CH Relay mqtt message sequence (SLT2 displays 'Manual'):-
+#### Switch on CH Relay 'manual' mode mqtt message sequence (SLT2 displays 'Manual'):-
 
 1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_heat": "heat"}`
 
@@ -200,7 +200,7 @@ The message sequence to set up CH on/off mode is:-
 
 3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_heat": "1"}`
 
-Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat SP value. To achieve this, send a thermostat set value message:-
+Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat setpoint value. To achieve this, send a thermostat set value message:-
 
 Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Message `VALUE` where VALUE is Thermostat setpoint in degrees C (eg. 20.5)
 
@@ -219,6 +219,11 @@ Can be read from **occupied_heating_setpoint_heat**
 #### Thermostat (SLT2) Temperature
 
 Can be read from **local_temperature_heat**
+
+## SLR2 Off/Online Status
+
+Subscribing to topic **zigbee2mqtt/FRIENDLY_NAME/availability** allows the SLR2 offline/online status to be read (see flows.json) 
+
 
 ## Domoticz dzVents Code Snippets
 
@@ -263,11 +268,11 @@ The following code snippets can be used to format mqqt message to be published t
     
             if (item.name == 'CHSwitch') then                                                                       --CH Switch. On sets SLR2 to 'manual', Off to 'off'
                 if (CHSwitch.state == 'On') then
-                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_heat\":\"heat\"}')       --publish 3 messages to SLR2 to turn on CH relay
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_heat\":\"heat\"}')       --publish 3 messages to SLR2 to turn on CH 'heat' function
                     MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/get','{\"system_mode_heat\":\"\"}')
                     MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"temperature_setpoint_hold_heat\":\"1\"}')
                 else
-                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_heat\":\"off\"}')        --publish 3 messages to SLR2 to turn off CH relay
+                    MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"system_mode_heat\":\"off\"}')        --publish 3 messages to SLR2 to turn off CH to 'off'
                     MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/get','{\"system_mode_heat\":\"\"}')
                     MakeMQTT('zigbee2mqtt/Boiler Controller SLR2/heat/set','{\"temperature_setpoint_hold_heat\":\"0\"}')
                 end
