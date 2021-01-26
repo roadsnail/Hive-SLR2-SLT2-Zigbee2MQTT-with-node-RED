@@ -142,6 +142,8 @@ In order to experiment easier and visualise the flow of commands to be issued to
 2. Set a CH thermostat setpoint controlled from a thermostat device in Domoticz (or node-RED flow) in order to toggle demand for heat on my system.
 
 3. Read the status of the SLR2 CH/HW relays in node-RED and then send results via MQTT to virtual switches in Domoticz. (See 'Domoticz' nodes in attached flow).
+
+4. Read Zigbee offline/online status of controllers. (See offline/online part of flow.json - omit Domoticz nodes if not required)
  
 
 ## node-RED flow (flow.json)
@@ -157,7 +159,7 @@ node-RED dashboard does not display value. See fix https://github.com/roadsnail/
 
 ## Relay Control - Hot Water
 
-Hot Water relay control is relatively simple. Just publish 3 mqqt messages in sequence for each state (Off/On). Although the controller publishes a 'water' temperature and thermostat value, these are not used. HW Relay can be simply switched using the below sequence. (The 'get' message is required):-
+Hot Water relay control is relatively simple. Just publish 3 mqqt messages in sequence for each state (Off/On). Although the controller publishes a 'water' temperature and thermostat value, these are not used. HW Relay can be simply switched using the below sequence. (The 'get' message (second one below) is required):-
 
 #### Switch off HW Relay mqtt message sequence (SLT2 displays 'Off'):-
 
