@@ -22,7 +22,7 @@ UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenk
 
 ## CH/HW Controller - node-RED screenshot
 
-![CH-HW-Hive-Controller-node-RED-screenshot](https://user-images.githubusercontent.com/24318993/103233967-5a7af000-4936-11eb-81c0-5a5e522238ba.png)
+![2021-01-28 13_48_01-Node-RED Dashboard](https://user-images.githubusercontent.com/24318993/106148552-15362200-6171-11eb-81b3-7acd9f413b3f.png)
 
 
 ## Background
