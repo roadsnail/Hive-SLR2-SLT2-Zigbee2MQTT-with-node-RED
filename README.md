@@ -1,5 +1,8 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, zigbee2MQTT and Node-RED - Working notes
+
+UPDATE - 30th Jan 2021 - Correct CH thermostat topic in write-up. dzVents is correct
+
 UPDATE - 18th Jan 2021 - Update flow.json to v0.5 - Add support for SLR/SLT offline/online
 
 UPDATE - 5th Jan 2021  -  Added NOTES on CC2531 and zigbee2MQTT stability section
@@ -204,7 +207,7 @@ The message sequence to set up CH on/off mode is:-
 
 Now that CH Relay 'Manual' mode is selected, the relay may be switched by changing the thermostat setpoint value. To achieve this, send a thermostat set value message:-
 
-Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint_heat` Message `VALUE` where VALUE is Thermostat setpoint in degrees C (eg. 20.5)
+Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set/occupied_heating_setpoint` Message `VALUE` where VALUE is Thermostat setpoint in degrees C (eg. 20.5)
 
 ## SLR2 Status
 
