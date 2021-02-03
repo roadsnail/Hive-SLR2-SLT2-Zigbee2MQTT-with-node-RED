@@ -1,28 +1,7 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, Zigbee2MQTT and Node-RED - Working notes
 
-UPDATE - 1st Feb 2021 - Correct naming inconsistencies/errors
-
-UPDATE - 30th Jan 2021 - Correct CH thermostat topic in write-up. dzVents is correct
-
-UPDATE - 18th Jan 2021 - Update flow.json to v0.5 - Add support for SLR/SLT offline/online
-
-UPDATE - 5th Jan 2021  -  Added NOTES on CC2531 and Zigbee2MQTT stability section
-
-UPDATE - 1st Jan 2021  - flow.json - Modify MQQT input node and feed into json parser. Version 0.41
-
-UPDATE - 31st Dec 2020 - Now testing Hive thermostat type SLT3 (shiny version with rotary encoder)
-
-UPDATE - 31st Dec 2020 - Node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1 . Fixed> v0.4
-
-UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
-
-UPDATE - 30th Dec 2020 - Add some Domoticz dzVents code snippets
-
-UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments. Version 0.3
-
-UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenkk/zigbee2mqtt/issues/5357
-
+## Break free from relying on Centrica's Hive Cloud for your Hive Active Heating/Hotwater Controller/Thermostat and control it locally using Domoticz, Zigbee2MQTT and MQTT. 
 
 
 ## CH/HW Controller - node-RED screenshot
@@ -32,11 +11,11 @@ UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenk
 
 ## Background
 
-My aim is to control my home Hive Active Central Heating/Hot Water system on my local network without requiring Internet access to the British Gas Hive 'cloud'. 
+My aim is to control my home Hive Active Central Heating/Hot Water system on my local network without requiring Internet access to the Centrica Hive 'cloud'. 
 
-Until now, I have been reliant on controlling it using unofficial APIs via the British Gas Hive cloud infrastructure. Not ideal as BG change their APIs on occasions resulting in Hive CH/HW control downtime on my home automation platform, potentially resulting in a too hot or cold house!
+Until now, I have been reliant on controlling it using unofficial APIs via the Centrica Hive cloud infrastructure. Not ideal as they change their APIs on occasions resulting in Hive CH/HW control downtime on my home automation platform, potentially resulting in a too hot or cold house!
 
-Fortunately, support for the British Gas Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent Zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
+Fortunately, support for the Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent Zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
 This is a repository of my node-RED flow and notes regarding my Hive Active controller testing and findings over the last couple of months. Some of it may be just plain wrong. However my test SLR2/SLT2, which has been shadowing my live Hive Active equipment connected to my Domoticz system, has been working fine for a few days using the MQTT publish messages found in the node-RED flow. (See message format below). 
 
@@ -321,4 +300,25 @@ I think I have traced the 'lockup' issue to a 'noisy' 5V supply voltage at the C
 
 Since adding the capacitor, I have seen 15 days of continuous Zigbee network uptime without experiencing a single 'lockup'. (My Zigbee network availability is being monitored using a Domoticz 'watchdog' device that pings me a pushover message whenever the network appears to be down).
 
+# Updates
+UPDATE - 1st Feb 2021 - Correct naming inconsistencies/errors
 
+UPDATE - 30th Jan 2021 - Correct CH thermostat topic in write-up. dzVents is correct
+
+UPDATE - 18th Jan 2021 - Update flow.json to v0.5 - Add support for SLR/SLT offline/online
+
+UPDATE - 5th Jan 2021  -  Added NOTES on CC2531 and Zigbee2MQTT stability section
+
+UPDATE - 1st Jan 2021  - flow.json - Modify MQQT input node and feed into json parser. Version 0.41
+
+UPDATE - 31st Dec 2020 - Now testing Hive thermostat type SLT3 (shiny version with rotary encoder)
+
+UPDATE - 31st Dec 2020 - Node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1 . Fixed> v0.4
+
+UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
+
+UPDATE - 30th Dec 2020 - Add some Domoticz dzVents code snippets
+
+UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments. Version 0.3
+
+UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenkk/zigbee2mqtt/issues/5357
