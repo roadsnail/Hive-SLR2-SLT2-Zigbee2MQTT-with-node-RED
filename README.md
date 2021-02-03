@@ -4,7 +4,7 @@
 ## Break free from relying on Centrica's Hive Cloud for your Hive Active Heating/Hotwater Controller/Thermostat and control it locally using Domoticz, Zigbee2MQTT and MQTT. 
 
 
-## CH/HW Controller - node-RED screenshot
+Hive Active CH/HW Controller - node-RED screenshot
 
 ![2021-01-28 13_48_01-Node-RED Dashboard](https://user-images.githubusercontent.com/24318993/106148552-15362200-6171-11eb-81b3-7acd9f413b3f.png)
 
