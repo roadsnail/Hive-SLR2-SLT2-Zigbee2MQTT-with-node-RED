@@ -1,10 +1,10 @@
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, Zigbee2MQTT and Node-RED - Working notes
 
-## Break free from relying on Centrica's Hive Cloud for your Hive Active Heating/Hotwater Controller/Thermostat and control it locally using Domoticz, Zigbee2MQTT and MQTT. 
+## Break free from relying on Centrica's Hive Cloud for your Hive Active Heating/Hot water Controller/Thermostat and control it locally using Domoticz, Zigbee2MQTT, node-RED and MQTT. 
 
 
-Hive Active CH/HW Controller - node-RED dashboard screenshot. (Note that node-RED is not an essential item for local control of the SLR/SLT. It is optional and used to visualise and test MQTT publish/subscribe topics during testing).
+Hive Active CH/HW Controller - node-RED dashboard screenshot. Node-RED is used to visualise and test MQTT publish/subscribe topics during testing/development and is used to publish MQTT messages to Domoticz.
 
 ![2021-01-28 13_48_01-Node-RED Dashboard](https://user-images.githubusercontent.com/24318993/106148552-15362200-6171-11eb-81b3-7acd9f413b3f.png)
 
@@ -17,7 +17,9 @@ Until now, I have been reliant on controlling it using unofficial APIs via the C
 
 Fortunately, support for the Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent Zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
-This is a repository of my node-RED flow and notes regarding my Hive Active controller testing and findings over the last couple of months. Some of it may be just plain wrong. However my test SLR2/SLT2, which has been shadowing my live Hive Active equipment connected to my Domoticz system, has been working fine for a few days using the MQTT publish messages found in the node-RED flow. (See message format below). 
+This is a repository of my node-RED flow, Domoticz dzVents code snippets (using mosquitto pub/sub) and notes regarding my Hive Active controller testing and findings over the last couple of months. 
+
+Some of it may be just plain wrong. However my test SLR2/SLT2, which has been shadowing my live Hive Active equipment connected to my Domoticz system, has been working fine for a few days using the MQTT publish messages found in the node-RED flow. (See message format below). 
 
 UPDATE 01/02/2021 - My Hive hardware has been working consistently on my Zigbee network without issues for more than a month now.
 
@@ -26,13 +28,13 @@ Feel free to re-use any of the information here if it helps, but be sure to run 
 
 ## Setup
 
-My Home Automation (Domoticz) runs on a Raspberry Pi 4. In addition I run mosquitto message broker, mosquitto-clients (pub and sub), node-RED and the aforementioned Zigbee2MQTT. 
+My Home Automation (Domoticz) software runs on a Raspberry Pi 4. In addition I run mosquitto message broker, mosquitto-clients (pub and sub), node-RED and Zigbee2MQTT. 
 
-Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz Python plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however at this time the plugin doesn't currently support properly the Hive SLR2/SLT2 combination. 
+Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz Python plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however at this time the plugin doesn't appear to support properly the Hive SLR2/SLT2 combination.
 
 As a result of this I am using MQQT publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2. (See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED#domoticz-dzvents-code-snippets )
 
-Status (ie the state of CH/HW relays, thermostat setpoint and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/blob/main/flow.json which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
+Status (ie the state of CH/HW relays, thermostat setpoint, Controller On/Offline and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/blob/main/flow.json which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
 ## Devices
 
