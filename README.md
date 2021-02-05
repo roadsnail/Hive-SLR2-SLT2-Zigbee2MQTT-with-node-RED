@@ -96,19 +96,21 @@ At this point the controller does not publish a full list of MQTT messages on th
 
 By connecting a 'debug' node to the output of the node-RED MQTT input node you can see that fewer messages are being sent from the Hive test system.
 
-To enable the missing messages relating to CH and HW relay control - 
+To enable the missing MQTT messages relating to CH and HW relay control - 
 
 On the SLT3 thermostat:-
 Press **MENU** button
 Select **'Heat'** and set to **'Manual'** - Then press confirm button
 
-Similarly (for HW):-
+Similarly (for Hot Water):-
 
 Press **MENU** button
 Select **'Hot Water'** and set to **'Always On'** - Then press confirm button
 
-
-This appears to enable the CH and HW On/Off buttons in the node-RED flow. The CH thermostat works, and the controller status appears to work in the same manner as the older SLR2/SLT2 combination (which just works without the additional steps).
+On the SLT2 thermostat:-
+Press top right **'menu'** button marked **+** to enable other switches
+Press **Heat** function button (marked right arrow) until the status changes to **Manual**
+Press **Hot Water** funtion button (marked left arrow) until the status changes to **Off**
 
 
 ## Controlling CH/HW Relays - Investigating MQTT messages
