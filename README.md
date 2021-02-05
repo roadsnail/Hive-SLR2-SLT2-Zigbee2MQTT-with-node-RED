@@ -13,7 +13,7 @@ Hive Active CH/HW Controller - node-RED dashboard screenshot. Node-RED is used t
 
 My aim is to control my home Hive Active Central Heating/Hot Water system on my local network without requiring Internet access to the Centrica Hive 'cloud'. 
 
-Until now, I have been reliant on controlling it using unofficial APIs via the Centrica Hive cloud infrastructure using a 'plugin' in Domoticz. Not ideal as they change their APIs on occasions resulting in Hive CH/HW control downtime on my home automation platform, potentially resulting in a too hot or cold house until the changes have been reverse-engineered and changes made to update to Centrica's API changes.
+Until now, I have been reliant on controlling it using unofficial APIs via the Centrica Hive cloud infrastructure using a Domoticz plugin. Not ideal as they change their APIs on occasions resulting in Hive CH/HW control downtime on my home automation platform, potentially resulting in a too hot or cold house until the changes have been reverse-engineered and changes made to accomodate Centrica's API changes.
 
 Fortunately, support for the Hive SLR2 2-channel controller (Hot Water, Central heating) has been added recently to Koenkk's excellent Zigbee2MQTT project (https://github.com/Koenkk/zigbee2mqtt). This should allow me achieve my aim of controlling my system 'locally'.
 
