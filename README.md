@@ -1,5 +1,5 @@
 
-# Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, Zigbee2MQTT and Node-RED - Working notes
+# Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, Zigbee2MQTT and Node-RED - A work in progress
 
 ## Break free from relying on Centrica's Hive Cloud for your Hive Active Heating/Hot water Controller/Thermostat and control it locally using Domoticz, Zigbee2MQTT, node-RED and MQTT. 
 
@@ -30,9 +30,9 @@ Feel free to re-use any of the information here if it helps, but be sure to run 
 
 My Home Automation (Domoticz) software runs on a Raspberry Pi 4. In addition I run mosquitto message broker, mosquitto-clients (pub and sub), node-RED and Zigbee2MQTT. 
 
-Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz Python plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however at this time the plugin doesn't appear to support properly the Hive SLR2/SLT2 combination.
+Zigbee2MQTT integration within Domoticz is taken care of by a Domoticz Python plugin - see https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin , however at this time the plugin doesn't appear to support properly the Hive SLR2/SLT2 or SLT3 combination.
 
-As a result of this I am using MQQT publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2. (See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED#domoticz-dzvents-code-snippets )
+As a result of this I am using MQQT publish/subscribe calls directly from Domoticz (dzVents) in order to control the SLR2/SLT2 (and SLR2/SLT3). (See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED#domoticz-dzvents-code-snippets )
 
 Status (ie the state of CH/HW relays, thermostat setpoint, Controller On/Offline and temperature) **from** the SLR2/SLT2 is handled by a node-RED flow https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/blob/main/flow.json which publishes to **domoticz/in** topic thus updating devices in Domoticz. 
 
@@ -51,34 +51,25 @@ Having procured a used Hive SLR2 controller and SLT2 thermostat (my test system)
 
 Zigbee2MQTT discovered the two devices and they were added to my Zigbee network. Both devices were next given 'friendly' Zigbee names (Boiler Controller SLR2 and Boiler Thermostat SLT2)
 
-I also enabled the newish Zigbee2MQTT front end https://www.zigbee2mqtt.io/information/frontend.html to allow me to easily check out SLR2/SLT2 settings. Looking at the functions exposed for the controller/thermostat pair, the SLR2/SLT2 may be controlled by sending MQTT commands to the controller (SLR2) device only. Communication taking place over the Zigbee network between the controller and thermostat, (eg. thermostat temperature), must be controlled by firmware local to the devices. 
+I also enabled the Zigbee2MQTT front end https://www.zigbee2mqtt.io/information/frontend.html to allow me to easily check out SLR2/SLT2 settings. Looking at the functions exposed for the controller/thermostat pair, the SLR2/SLT2 may be controlled by sending MQTT commands to the controller (SLR2) device only. Communication taking place over the Zigbee network between the controller and thermostat, (eg. thermostat temperature), must be controlled by proprietary firmware local to the devices. 
 
-After Zigbee2MQTT discovered the SLR2/SLT2 pair, my home automation software, Domoticz utilising the Zigbee2MQTT Python plugin, created three new Domoticz devices. However, the Zigbee2MQTT plugin version I am running does not detect the SLR2/SLT2 properly so I am currently ignoring these autodiscovered Domoticz devices. 
+After Zigbee2MQTT discovered the SLR2/SLT2 pair, my home automation software, Domoticz utilising the Zigbee2MQTT Python plugin, created three new Domoticz devices. However, the Zigbee2MQTT (Domoticz) plugin version I am running does not detect the SLR2/SLT2 properly so I am currently ignoring these autodiscovered Domoticz devices. 
 
 I guess support will be properly added in due course. Meanwhile I will control the SLR2 with my own MQTT commands (via mosquitto_pub) within Domoticz using dzVents with manually created virtual switches and thermostat devices. I will check the status of the SLR2 with the help of a node-RED flow which creates an MQTT message published to Domoticz MQTT domoticz/in. 
 
 
 Initial testing with Zigbee2MQTT dev revision 1.16.2 initially threw up an issue with the 'water' endpoint (required for Hot Water part of controller) being missing, requiring the addition of 'water', to the Const endpointNames section in utils.js
 
-(UPDATE: This has since been fixed in a newer dev release of Zigbee2MQTT)
+(UPDATE: This has since been fixed in a newer dev release of Zigbee2MQTT, therefore updating to at least v 1.17.x is recommended)
 
-Thus:
-
-`const endpointNames = [ 'left', 'right', 'center', 'bottom_left', 'bottom_right', 'default', 'top_left', 'top_right', 'white', 'rgb', 'cct', 'system', 'top', 'bottom', 'center_left', 'center_right', 'ep1', 'ep2', 'row_1', 'row_2', 'row_3', 'row_4', 'relay', 'l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8', 'button_1', 'button_2', 'button_3', 'button_4', 'button_5', 'button_6', 'button_7', 'button_8', 'button_9', 'button_10', 'button_11', 'button_12', 'button_13', 'button_14', 'button_15', 'button_16', 'button_17', 'button_18', 'button_19', 'button_20', 'button_light', 'button_fan_high', 'button_fan_med', 'button_fan_low', 'heat', 'cool', ];`
-
-becomes
-
-`const endpointNames = [ 'left', 'right', 'center', 'bottom_left', 'bottom_right', 'default', 'top_left', 'top_right', 'white', 'rgb', 'cct', 'system', 'top', 'bottom', 'center_left', 'center_right', 'ep1', 'ep2', 'row_1', 'row_2', 'row_3', 'row_4', 'relay', 'l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8', 'button_1', 'button_2', 'button_3', 'button_4', 'button_5', 'button_6', 'button_7', 'button_8', 'button_9', 'button_10', 'button_11', 'button_12', 'button_13', 'button_14', 'button_15', 'button_16', 'button_17', 'button_18', 'button_19', 'button_20', 'button_light', 'button_fan_high', 'button_fan_med', 'button_fan_low', 'heat', 'cool', 'water', ];`
-
-followed by a zigbee2MQTT restart.
 
 ## Pairing Instructions:
 
 1. Switch off Hive bridge (usually connected to home router)
-2. Remove a battery from the thermostat
+2. Remove a battery from the thermostat (SLT2 or SLT3)
 3. Enable Zigbee2MQTT to allow it to accept new devices. (Logs will show pairing activity as it happens later, hopefully)
-4. On SLR2, press 'Central Heating' button until it flashes pink. Release then press and hold it again. It will flash amber and the controller should join the network.
-5. Replace batteries in thermostat (SLT2 or SLT3) **while** pressing 'back' and 'menu' buttons to perform a reset. It will, reset, reboot and join the network (check logs).
+4. On the heating controller SLR2, press and hold 'Central Heating' button until it flashes pink. Release then press and hold it again. It will flash amber and the controller should join the network. With Zigbee2MQTT still in pairing mode:-
+5. Replace batteries in the thermostat (SLT2 or SLT3) **while** pressing 'back' and 'menu' buttons on the SLT3 OR the '+' and '-' buttons on the SLT" to perform a reset. It will, reset, reboot and join the network (check logs).
 
 ## Testing (SLR2 and SLT3 combination)
 
@@ -138,7 +129,7 @@ In order to experiment easier and visualise the flow of commands to be issued to
 
 ## node-RED flow (flow.json)
 
-This connects to my local MQTT broker - so if re-using this flow, be sure to change any MQTT publish/subscribe nodes to reflect your own MQTT broker IP and/or authorisation.
+This connects to my local MQTT broker - so if re-using this flow, be sure to change any MQTT publish/subscribe nodes to reflect your own MQTT broker IP and authorisation (if used).
 
 Also note that it incorporates flows to enable Domoticz thermostats/switches to be updated by node-RED. These nodes may be deleted if not using Domoticz. 
 
@@ -149,7 +140,7 @@ node-RED dashboard does not display value. See fix https://github.com/roadsnail/
 
 ## Relay Control - Hot Water
 
-Hot Water relay control is relatively simple. Just publish 3 MQTT messages in sequence for each state (Off/On). Although the controller publishes a 'water' temperature and thermostat value, these are not used. HW Relay can be simply switched using the below sequence. (The 'get' message (second one below) is required):-
+Hot Water relay control is relatively simple. Just publish 3 MQTT messages in sequence for each state (Off/On). Although the controller publishes a 'water' temperature and thermostat value, these are not used. The HW Relay can be simply switched using the below sequence. (The 'get' message (second one below) is required):-
 
 #### Switch off HW Relay MQTT message sequence (SLT2 displays 'Off'):-
 
@@ -172,11 +163,11 @@ Note that the water thermostat **occupied_heating_setpoint_water** has no effect
 
 ## Relay Control - Heating
 
-Heating relay control is slightly different to the simple on/off Hot Water relay control. As well as publishing 3 MQTT messages for each CH relay state (Off/On). (The 'get' message is once again required). Relay control is also affected by **occupied_heating_setpoint** (CH Thermostat SP). ie Setting this to a low value (less than thermostat temperature, will set the CH relay to 'off' OR setting this to a high value (greater than thermostat temperature, will set the CH relay to 'on'.
+Heating relay control is slightly different to the simple on/off Hot Water relay control. As well as publishing 3 MQTT messages for each CH relay state (Off/On). (The 'get' message is once again required). Relay control is also affected by **occupied_heating_setpoint** (CH Thermostat SP). ie Setting this to a low value (less than thermostat temperature, will set the CH relay to 'off' OR setting this to a high value (greater than thermostat temperature, will set the CH relay to 'on'. 
 
 The message sequence to set up CH on/off mode is:-
 
-#### Switch off CH Relay MQTT message sequence (SLT2 displays 'Off' and thermostat setting changes to 1deg C):-
+#### Switch off CH Relay MQTT message sequence (SLT2 displays 'Off' and thermostat setting changes to 1deg C). Publish:-
 
 1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_water": "off"}`
 
@@ -184,7 +175,7 @@ The message sequence to set up CH on/off mode is:-
 
 3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
 
-#### Switch on CH Relay 'manual' mode MQTT message sequence (SLT2 displays 'Manual'):-
+#### Switch on CH Relay 'manual' mode MQTT message sequence (SLT2 displays 'Manual'). Publish:-
 
 1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_heat": "heat"}`
 
@@ -214,7 +205,7 @@ Can be read from **local_temperature_heat**
 
 ## SLR2 Off/Online Status
 
-Subscribing to topic **zigbee2mqtt/FRIENDLY_NAME/availability** allows the SLR2 offline/online status to be read (see flows.json) 
+Subscribing to topic **zigbee2mqtt/FRIENDLY_NAME/availability** allows the SLR2 offline/online status to be read (see flows.json). For this to work ensure that the 'Availability' feature in Zigbee2MQTT is enabled (see https://github.com/Koenkk/zigbee2mqtt/issues/775 ). 
 
 
 ## Domoticz dzVents Code Snippets
