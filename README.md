@@ -21,9 +21,11 @@ This is a repository of my node-RED flow, Domoticz dzVents code snippets (using 
 
 Some of it may be just plain wrong. However my test SLR2/SLT2, which has been shadowing my live Hive Active equipment connected to my Domoticz system, has been working fine for a few days using the MQTT publish messages found in the node-RED flow. (See message format below). 
 
-UPDATE 01/02/2021 - My Hive hardware has been working consistently on my Zigbee network without issues for more than a month now.
+UPDATE 1st Feb 2021 - My Hive hardware has been working consistently on my Zigbee network without issues for more than a month now.
 
 Feel free to re-use any of the information here if it helps, but be sure to run your own tests and ensure that any/all of this is 'fit for your purpose'.
+
+UPDATE 11th Apr 2021 - What a difference a dongle makes! I finally managed to procure a zig-a-zig-ah Zigbee dongle from Electrolama based on the TI CC2652R controller and what a difference it has made to my Zigbee network. Gone are the intermittent issues with the former CC2531 controller much improving reliability of my whole Zigbee network including, of course, the SLR/SLT devices.
 
 
 ## Setup
