@@ -171,11 +171,11 @@ The message sequence to set up CH on/off mode is:-
 
 #### Switch off CH Relay MQTT message sequence (SLT2 displays 'Off' and thermostat setting changes to 1deg C). Publish:-
 
-1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_water": "off"}`
+1. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"system_mode_heat": "off"}`
 
-2. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/get` Message `{"system_mode_water": ""}`
+2. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/get` Message `{"system_mode_heat": ""}`
 
-3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_water": "0"}`
+3. Topic `zigbee2mqtt/FRIENDLY_NAME/heat/set` Message `{"temperature_setpoint_hold_heat": "0"}`
 
 #### Switch on CH Relay 'manual' mode MQTT message sequence (SLT2 displays 'Manual'). Publish:-
 
