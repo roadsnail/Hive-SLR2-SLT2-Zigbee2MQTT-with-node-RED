@@ -1,3 +1,27 @@
+---
+### UPDATE 30th Apr 2021
+
+Announcing Project Pi-ve. 
+
+Following on from this project, I now have a new Beta test Hive/Pi automation project - Project Pi-ve at https://github.com/roadsnail/Pi-ve
+
+What is Pi-ve? - It is a standalone Hive Based Central Heating/Hot Water Controller controlled by a Raspberry Pi Zero W. 
+
+Control your Central Heating/Hot Water boiler on your local network using Pi-ve from:-
+
+* Node-RED Dashboard (in a Web browser)
+* HTTP Requests
+* Messages published to an onboard MQTT message broker
+
+The Node-RED dashboard Web page offers full control of CH and HW with up to 8 programmable 'On' periods per day plus Override/Boost functions.
+
+In addition, the Pi-ve may be controlled using MQTT commands OR HTTP Requests from an external system (eg. A Home Automation platform or phone/tablet App).
+
+
+---
+
+
+
 
 # Integrating Hive Active Heating SLR2/SLT2 & SLT3 - Domoticz, Zigbee2MQTT and Node-RED - A work in progress
 
