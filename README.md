@@ -1,7 +1,9 @@
 ---
-### UPDATE 30th Apr 2021
+# Updates
 
-Announcing Project Pi-ve. 
+UPDATE - 12th May 2021 - @russdan adds Hotwater boost / emergency_heating functionality. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/2 for more details if you wish to also add HW and probably a CH 'Boost' function. 
+
+30th Apr 2021 - **Announcing Project Pi-ve.** 
 
 Following on from this project, I now have a new Beta test Hive/Pi automation project - Project Pi-ve at https://github.com/roadsnail/Pi-ve
 
@@ -16,6 +18,29 @@ Control your Central Heating/Hot Water boiler on your local network using Pi-ve 
 The Node-RED dashboard Web page offers full control of CH and HW with up to 8 programmable 'On' periods per day plus Override/Boost functions.
 
 In addition, the Pi-ve may be controlled using MQTT commands OR HTTP Requests from an external system (eg. A Home Automation platform or phone/tablet App).
+
+
+UPDATE - 1st Feb 2021 - Correct naming inconsistencies/errors
+
+UPDATE - 30th Jan 2021 - Correct CH thermostat topic in write-up. dzVents is correct
+
+UPDATE - 18th Jan 2021 - Update flow.json to v0.5 - Add support for SLR/SLT offline/online
+
+UPDATE - 5th Jan 2021  -  Added NOTES on CC2531 and Zigbee2MQTT stability section
+
+UPDATE - 1st Jan 2021  - flow.json - Modify MQQT input node and feed into json parser. Version 0.41
+
+UPDATE - 31st Dec 2020 - Now testing Hive thermostat type SLT3 (shiny version with rotary encoder)
+
+UPDATE - 31st Dec 2020 - Node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1 . Fixed> v0.4
+
+UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
+
+UPDATE - 30th Dec 2020 - Add some Domoticz dzVents code snippets
+
+UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments. Version 0.3
+
+UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenkk/zigbee2mqtt/issues/5357
 
 
 ---
@@ -321,25 +346,4 @@ I think I have traced the 'lockup' issue to a 'noisy' 5V supply voltage at the C
 
 Since adding the capacitor, I have seen 15 days of continuous Zigbee network uptime without experiencing a single 'lockup'. (My Zigbee network availability is being monitored using a Domoticz 'watchdog' device that pings me a pushover message whenever the network appears to be down).
 
-# Updates
-UPDATE - 1st Feb 2021 - Correct naming inconsistencies/errors
 
-UPDATE - 30th Jan 2021 - Correct CH thermostat topic in write-up. dzVents is correct
-
-UPDATE - 18th Jan 2021 - Update flow.json to v0.5 - Add support for SLR/SLT offline/online
-
-UPDATE - 5th Jan 2021  -  Added NOTES on CC2531 and Zigbee2MQTT stability section
-
-UPDATE - 1st Jan 2021  - flow.json - Modify MQQT input node and feed into json parser. Version 0.41
-
-UPDATE - 31st Dec 2020 - Now testing Hive thermostat type SLT3 (shiny version with rotary encoder)
-
-UPDATE - 31st Dec 2020 - Node-RED flow issue fixed. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/1 . Fixed> v0.4
-
-UPDATE - 31st Dec 2020 - Add SLR2/SLT2 pairing instructions
-
-UPDATE - 30th Dec 2020 - Add some Domoticz dzVents code snippets
-
-UPDATE - 28th Dec 2020 - flow.json - Improve readability/ Add comments. Version 0.3
-
-UPDATE - 20th Dec 2020 - Water endpoint Issue fixed see https://github.com/Koenkk/zigbee2mqtt/issues/5357
