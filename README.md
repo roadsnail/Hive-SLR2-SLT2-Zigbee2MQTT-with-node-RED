@@ -1,5 +1,7 @@
 ---
-# Updates
+# Updates  
+
+UPDATE - 12th Dec 2025 - This repository is being archived. There are more recent integrations for the Hive controllers in Home Assistant but I leave this available for anyone interested in my early ventures into Node-Red.
 
 UPDATE - 12th May 2021 - @russdan adds Hotwater boost / emergency_heating functionality. See https://github.com/roadsnail/Hive-SLR2-SLT2-Zigbee2MQTT-with-node-RED/issues/2 for more details if you wish to also add HW and probably a CH 'Boost' function. 
 
